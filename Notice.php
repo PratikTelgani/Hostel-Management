@@ -16,9 +16,6 @@ $alert = false;
             $alert = true;
         }
     }
-
-    
-    
 ?>
 
 <!DOCTYPE html>
@@ -41,11 +38,23 @@ $alert = false;
             margin-right: 35%;
             margin-left: 35%;
         }
-      .con{
+        .con{
           margin-left: 5%;
           font-size: 25px;
+        }
+        .btnh{
+            color: red;
+            align-items: center;
+            margin-left: 45%;
+        }
+        .btnh a{
+            text-decoration: none;
+        }
+        .err{
+            margin-right: 32%;
+            margin-left: 32%;
+            text-align: center;
       }
-
     </style>
 </head>
 <body>
@@ -55,8 +64,7 @@ $alert = false;
 <br><br>
 <hr><?php 
     if($alert){
-        echo '<h1><div class="p-3 mb-2 bg-success
-         text-white">Notice Board Updated</div></h1>';
+        echo '<h1><div class="alert alert-success d-flex align-items-center err">Notice Board Updated successfully</div></h1>';
     }
 ?><hr><br>
 <div class="con">
@@ -77,7 +85,7 @@ $alert = false;
     </form>
 </div>
 
-    <hr><button type="submit" class="btn btn-dark button" ><a href="welcomeadmin.php" class="home">Home</a></button>
+    <hr><button type="submit" class="btn btn-dark btnh" ><a href="welcomeadmin.php" class="home">Home</a></button>
 
 
 

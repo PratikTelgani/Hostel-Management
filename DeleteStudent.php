@@ -3,10 +3,8 @@
     include 'dbconnect.php';
     if($_SERVER["REQUEST_METHOD"] == "POST"){
     $USN = $_POST["usn"];
-    $delete = "DELETE FROM `hostelstudent_details` WHERE `hostelstudent_details`.`Student_USN` = '$USN';";
     $delete1 = "DELETE FROM `logindetails` WHERE `logindetails`.`USN` = '$USN';";
     $delete2 = "DELETE FROM `student_details` WHERE `student_details`.`St_USN` = '$USN';";
-    $result1 = mysqli_query($con,$delete);
     $result2 = mysqli_query($con,$delete1);
     $result3 = mysqli_query($con,$delete2);
     }
@@ -72,15 +70,15 @@
             </tr>
         </thead>
             <?php
-                $getStudent = "SELECT * FROM `hostelstudent_details` WHERE Student_USN!='' ORDER BY R_No;";
+                $getStudent = "SELECT * FROM `student_details` WHERE St_USN!='' ORDER BY R_No;";
                 $result = mysqli_query($con,$getStudent);
                 while($Room = mysqli_fetch_assoc($result))
                 {
                     echo '<tr>
                     <td>'.$Room['R_No'].'</td>
-                    <td>'.$Room['Student_Name'].'</td>
-                    <td>'.$Room['Student_USN'].'</td>
-                    <td>'.$Room['Student_Branch'].'</td>
+                    <td>'.$Room['St_Name'].'</td>
+                    <td>'.$Room['St_USN'].'</td>
+                    <td>'.$Room['St_Branch'].'</td>
                     </tr>';
             }
             ?>
@@ -94,7 +92,7 @@
     <form action="/HostelManagement/DeleteStudent.php" method = "post">
     <div class="form-group">
         <label for="formGroupExampleInput">USN:</label>
-        <input type="text" class="form-control" id="usn" name="usn" placeholder="Enter the USN of the student"><br>
+        <input type="text" class="form-control" id="usn" name="usn" placeholder="Enter the USN of the student" Required><br>
     </div>
     <button type="submit" class="btn btn-primary">Delete</button><br>
     </form>

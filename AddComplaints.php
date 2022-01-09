@@ -49,6 +49,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             margin-left: 10px;
             margin-right: 10px;
         }
+        .err{
+          margin-right: 32%;
+          margin-left: 32%;
+          text-align: center;
+       }
         .h3{
             margin-left: 108px;
             margin-right: 1040px;
@@ -107,7 +112,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </div><br>
 <?php 
     if($alert){
-        echo '<h1><div class="p-3 mb-2 bg-success text-white">Complaint Booked</div></h1>';
+        echo '<h1><div class="alert alert-success d-flex align-items-center err">Complaint Booked</div></h1>';
     }
 ?><br>
 
@@ -117,7 +122,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <form action="/HostelManagement/AddComplaints.php" method = "post">
         <div class="form-group">
             <label for="formGroupExampleInput2">Complaint</label>
-            <input type="text" class="form-control" id="complaint" name="complaint" placeholder="Describe your Complaint"><br>
+            <input type="text" class="form-control" id="complaint" name="complaint" placeholder="Describe your Complaint" Required><br>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button><br>
     </form>

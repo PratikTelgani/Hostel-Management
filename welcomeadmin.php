@@ -9,15 +9,14 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 }
 else{
 
-  $username = $_SESSION['username'];
-$sql = "Select * from logindetails where Email='$username'";
-    $result = mysqli_query($con,$sql);
-    $rows = mysqli_fetch_assoc($result);
-    $USN = $rows['USN'];
-$query = "select * from student_details where St_USN = '$USN' ";
- 
-  $result1 = mysqli_query($con,$query);
-  $rows1 = mysqli_fetch_assoc($result1);
+  // $username = $_SESSION['username'];
+  // $sql = "Select * from logindetails where Email='$username'";
+  // $result = mysqli_query($con,$sql);
+  // $rows = mysqli_fetch_assoc($result);
+  // $USN = $rows['USN'];
+  // $query = "select * from student_details where St_USN = '$USN' ";
+  // $result1 = mysqli_query($con,$query);
+  // $rows1 = mysqli_fetch_assoc($result1);
 }
 ?>
 
@@ -112,7 +111,7 @@ $query = "select * from student_details where St_USN = '$USN' ";
             </tr>
         </thead>
             <?php
-                $details = "SELECT * FROM student_details WHERE student_details.St_USN!=0 ORDER BY student_details.R_No";
+                $details = "SELECT * FROM student_details WHERE R_No is not NULL ORDER BY student_details.R_No";
                 $details1 = mysqli_query($con,$details);
                 while($Room = mysqli_fetch_assoc($details1))
                 {

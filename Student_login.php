@@ -50,19 +50,36 @@
   <body>
     <style>
 
-      .header{
+      .head{
             margin-right: 38%;
             margin-left: 38%;
+            text-align: center;
+            box-shadow: 10px 10px 10px black;
+            background-color: transparent;
+            color: black;
+            border: 5px solid black;
+            border-radius: 8px;
+            border-radius: 8px;
         }
-      body{
-        background-image: url("Images/Hos.jpeg");
-        background-repeat: no-repeat;
+      .img-area{
+        background-image: url("Images/1.jpg");
+        -webkit-background-size: cover;
         background-size: cover;
+        background-position: center center;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        filter: blur(8px);
+        -webkit-filter: blur(4px);
       }
       .login-card{
-        box-shadow: 10px 10px 10px black;
-        background-color: darkgray;
+        box-shadow: 0px 0px 10px 5px black;
+        background-color: transparent;
         color: white;
+        font-size: 20px;
+        border: 2px solid black;
         border-radius: 8px;
         border-radius: 8px;
       }
@@ -71,9 +88,18 @@
         margin-left: 40%;
         text-align: center;
       }
+      .in{
+          border: 1px solid black;
+          outline: none;
+          border-radius: 5px;
+          box-shadow: 3px 3px 2px 1px black;
+      }
+      .link{
+        color: black:
+      }
     </style>
-
-<h1 class = "p-3 mb-6 bg-dark text-white header" >Student Login</h1><br>
+<div class="img-area"></div>
+<h1 class = "head" >Student Login</h1><br>
     <?php
       if($showError || $alert){
           echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -92,20 +118,20 @@
     <form action="/HostelManagement/Student_login.php" method="post">
       <div class="container" style="margin-top: 100px;">
         <div class="row justify-content-center">
-          <div class="p-3 mb-6 bg-dark text-white col-lg-4 login-card">
+          <div class="col-lg-4 login-card">
             <form>
               <h4>Login Details:</h4>
               <div class="mb-3" >
                 <label for="username" class="form-label">Email address*</label>
-                <input type="email" class="form-control" id="username" name="username" aria-describedby="emailHelp" Required>
+                <input type="email" class="form-control in" id="username" name="username" aria-describedby="emailHelp" Required>
                 <div id="emailHelp"  class="form-text" style="color: white">We'll never share your email with anyone else.</div>
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label" >Password</label>
-                <input type="password" class="form-control" id="password" name="password" Required>
+                <input type="password" class="form-control in" id="password" name="password" Required>
               </div>
-              <p>Don't have an account ? <a href="SignUp.php">Signup</a></p>
-              <p>Login as  <a href="Admin.php">Admin</a></p>
+                  <p>Don't have an account ? <a href="SignUp.php">Signup</a></p>
+                  <p>Login as  <a href="Admin.php">Admin</a></p>  
               <button type="submit" class="btn btn-primary">Login</button><br><hr>
           </form>
           </div>

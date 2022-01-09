@@ -5,13 +5,8 @@
     include 'dbconnect.php';
     $username = $_POST["username"];
     $password = $_POST["password"];
-
-    $sql = "Select * from logindetails where Email='$username'";
-    $result = mysqli_query($con,$sql);
-    $num = mysqli_num_rows($result);
-      if($num == 1 && $username=='admin@admin'){
-        while($row=mysqli_fetch_assoc($result)){
-          if(password_verify($password, $row['Password'])){
+      if($username=='admin@admin'){
+          if($password=='admin'){
             $login = true;
             session_start();
             $_SESSION['loggedin']=true;
@@ -20,10 +15,7 @@
           }
           else{
             $alert=true;
-          }
-        }
-       
-        
+          }  
       }
       else{
         $showError=true;
@@ -56,16 +48,34 @@
       .header{
             margin-right: 35%;
             margin-left: 35%;
+            box-shadow: 10px 10px 10px black;
+            background-color: transparent;
+            color: black;
+            border: 5px solid black;
+            border-radius: 8px;
+            border-radius: 8px;
         }
-      body{
-        background-image: url("Images/Hos.jpeg");
-        background-repeat: no-repeat;
+      .img-area{
+        background-image: url("Images/2.jpg");
+        -webkit-background-size: cover;
         background-size: cover;
+        background-position: center center;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        filter: blur(8px);
+        -webkit-filter: blur(4px);
       }
       .login-card{
-        box-shadow: 10px 10px 10px black;
-        background-color: darkgray;
+        box-shadow: 0px 0px 10px 5px black;
+        background-color: transparent;
         color: white;
+        font-weight: thick;
+        font-size: 20px;
+        border: 2px solid black;
+        border-radius: 8px;
         border-radius: 8px;
       }
       .err{
@@ -73,8 +83,15 @@
         margin-left: 32%;
         text-align: center;
       }
+      .in{
+          border: 1px solid black;
+          outline: none;
+          border-radius: 5px;
+          box-shadow: 3px 3px 2px 1px black;
+      }
     </style>
-<div class="p-3 mb-6 bg-dark text-white header">Admin Login</div><br>
+    <div class="img-area"></div>
+<div class="header">Admin Login</div><br>
 <?php
       if($showError || $alert){
           echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -93,17 +110,17 @@
     <form action="/HostelManagement/Admin.php" method="post">
       <div class="container" style="margin-top: 100px;">
         <div class="row justify-content-center">
-          <div class="p-3 mb-6 bg-dark col-lg-4 login-card">
+          <div class="col-lg-4 login-card">
             <form>
               <h4 >Login Details:</h4>
               <div class="mb-3" >
                 <label for="username" class="form-label"  >Email address*</label>
-                <input type="email" class="form-control" id="username" name="username" aria-describedby="emailHelp" Required>
+                <input type="email" class="form-control in " id="username" name="username" aria-describedby="emailHelp" Required>
                 <div id="emailHelp"   class="form-text" style="color: white">We'll never share your email with anyone else.</div>
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label"  >Password</label>
-                <input type="password" class="form-control" id="password" name="password" Required>
+                <input type="password" class="form-control in" id="password" name="password" Required>
               </div>
               <p>Not an Admin ? <a href="HostelManagement.html">Home</a></p>
               <button type="submit" class="btn btn-primary">Login</button><br><hr>
