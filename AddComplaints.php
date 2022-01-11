@@ -58,13 +58,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             margin-left: 108px;
             margin-right: 1040px;
             box-shadow: 8px 8px 8px black;
-
         }
+        .img-area{
+          background-image: url("Images/comp.jpg");
+          -webkit-background-size: cover;
+          background-size: cover;
+          background-position: center center;
+          height: 100vh;
+          position: fixed;
+          left: 0;
+          right: 0;
+          z-index: -1;
+          filter: blur(5px);
+          -webkit-filter: blur(5px);
+          background-color: rgba(0,0,0,.3);
+        background-blend-mode: multiply;
+       }
         .add{
             margin-left: 125px;
             margin-right: 60%;
         }
-        .button{
+        .butt a:hover{
+            color: red;
+        }
+        .butt{
             align-items: center;
             margin-left: 45%;
         }
@@ -75,10 +92,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         .reset{
             margin-left: 95%;
         }
+        .names{
+            color: red;
+            font-weight: bold;
+        }
+        .in{
+           border: 1px solid black;
+           outline: none;
+           border-radius: 5px;
+           box-shadow: 3px 3px 2px 1px black;
+        }
     </style>
     <title>Complaints</title>
 </head>
 <body>
+    <div class="img-area"></div>
     <h1 div class="p-3 mb-2 bg-dark text-white header">Complaints</div></h1>
     <div class="p-3 mb-6 bg-dark text-white h3">Complaints History:</div>
     <br>
@@ -120,9 +148,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <div class="add">
     <form action="/HostelManagement/AddComplaints.php" method = "post">
-        <div class="form-group">
+        <div class="form-group names">
             <label for="formGroupExampleInput2">Complaint</label>
-            <input type="text" class="form-control" id="complaint" name="complaint" placeholder="Describe your Complaint" Required><br>
+            <input type="text" class="form-control in" id="complaint" name="complaint" placeholder="Describe your Complaint" Required><br>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button><br>
     </form>
@@ -130,7 +158,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
-<button type="submit" class="btn btn-dark button" ><a href="welcome.php" class="home">Home</a></button>
+<button type="submit" class="btn btn-dark butt" ><a href="welcome.php" class="home">Home</a></button>
 
 
 

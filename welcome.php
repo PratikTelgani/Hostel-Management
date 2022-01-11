@@ -51,8 +51,20 @@ else{
           margin-right: 30%;
           text-align: center;
           border-radius: 8px;
-
         }
+        .img-area{
+          background-image: url("Images/entrance.jpg");
+          -webkit-background-size: cover;
+          background-size: cover;
+          background-position: center center;
+          height: 100vh;
+          position: fixed;
+          left: 0;
+          right: 0;
+          z-index: -1;
+          filter: blur(5px);
+          -webkit-filter: blur(5px);
+       }
         .p{
             box-shadow: 8px 8px 8px black;
             margin-left: 1%;
@@ -69,7 +81,7 @@ else{
     </style>
 </head>
 <body>
-
+<div class="img-area"></div>
   <div class="bg-dark bg-dark text-white header">Hostel Management</div><br>
 
 

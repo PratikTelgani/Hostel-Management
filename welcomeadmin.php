@@ -47,6 +47,20 @@ else{
             margin-left: 95px;
             margin-right: 1040px;
         }
+        .img-area{
+          background-image: url("Images/admin.jpg");
+          -webkit-background-size: cover;
+          background-size: cover;
+          background-position: center center;
+          height: 100vh;
+          position: fixed;
+          left: 0;
+          right: 0;
+          z-index: -1;
+          filter: blur(8px);
+          -webkit-filter: blur(8px);
+          
+       }
         .header{
             margin-right: 30%;
             margin-left: 30%;
@@ -61,7 +75,7 @@ else{
 
 </head>
 <body>
-
+<div class="img-area"></div>
 <div class="bg-dark bg-gradient text-white header">Hostel Management</div><br>
 
     <div class="nav nav-pills nav">

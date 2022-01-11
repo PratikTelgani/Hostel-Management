@@ -66,7 +66,7 @@
             padding: 0px;
             box-shadow: 10px 10px 10px black;
             background-color: transparent;
-            color: black;
+            color: white;
             border: 5px solid black;
             border-radius: 8px;
             border-radius: 8px;
@@ -79,7 +79,7 @@
           box-shadow: 8px 8px 8px black;
         }
         .img-area{
-          background-image: url("Images/3.jpg");
+          background-image: url("Images/entrance.jpg");
           -webkit-background-size: cover;
           background-size: cover;
           background-position: center center;
@@ -90,32 +90,37 @@
           z-index: -1;
           filter: blur(5px);
           -webkit-filter: blur(5px);
+          background-color: rgba(0,0,0,.6);
+          background-blend-mode: multiply;
        }
         .login-card{
            box-shadow: 0px 0px 10px 5px black;
            background-color: transparent;
-           color: black;
-           font-size: 20px;
+           color: white ;
            border: 2px solid black;
            border-radius: 8px;
            border-radius: 8px;
        }
        .in{
-          border: 1px solid black;
-          outline: none;
-          border-radius: 5px;
-          box-shadow: 3px 3px 2px 1px black;
-       }
+           border: 1px solid black;
+           outline: none;
+           border-radius: 5px;
+           box-shadow: 3px 3px 2px 1px black;
+        }
        .err{
           margin-right: 32%;
           margin-left: 32%;
           text-align: center;
        }
+       
+       .butt:hover{
+         color: red;
+       }
 </style>
     
 <div class="img-area"></div>
 
-<div class="header">Sign Up</div>
+<div class="header">Sign Up</div><br>
 
 <?php
    if($showAlert){
@@ -126,7 +131,7 @@
    <div class="alert alert-success d-flex align-items-center err" role="alert">
      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
      <div >
-       Registered Successfully!!  <a href="Student_login.php" >Login</a>
+       Registered Successfully!!
      </div>
    </div></svg>';
    }
@@ -150,7 +155,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-4 login-card">
         <form>
-          <h4 style="color: black;">Register Details:</h4>
+          <h4 style="color: white;">Register Details:</h4>
           <div class="mb-3" >
             <label for="name" class="form-label"  >Name*</label>
             <input type="text" class="form-control in" id="name" name="name" Required>
@@ -192,7 +197,7 @@
             <label for="name" class="form-label" >Address*</label>
             <input type="text" class="form-control in" id="addr" name="addr" Required>
           </div>
-          <p>Already have an account ? <a href="Student_login.php" class="login">Login</a></p>
+          <p>Already have an account ? <a class="butt" href="Student_login.php" class="login">Login</a></p>
           <button type="submit" class="btn btn-primary">Sign Up</button><br><hr>
       </form>
       </div>

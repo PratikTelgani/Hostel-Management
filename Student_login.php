@@ -73,7 +73,15 @@
         z-index: -1;
         filter: blur(8px);
         -webkit-filter: blur(4px);
+        background-color: rgba(0,0,0,.3);
+        background-blend-mode: multiply;
       }
+      .in{
+           border: 1px solid black;
+           outline: none;
+           border-radius: 5px;
+           box-shadow: 3px 3px 2px 1px black;
+        }
       .login-card{
         box-shadow: 0px 0px 10px 5px black;
         background-color: transparent;
@@ -96,6 +104,9 @@
       }
       .link{
         color: black:
+      }
+      .butt:hover{
+        color: red;
       }
     </style>
 <div class="img-area"></div>
@@ -130,8 +141,8 @@
                 <label for="password" class="form-label" >Password</label>
                 <input type="password" class="form-control in" id="password" name="password" Required>
               </div>
-                  <p>Don't have an account ? <a href="SignUp.php">Signup</a></p>
-                  <p>Login as  <a href="Admin.php">Admin</a></p>  
+                  <p>Don't have an account ? <a class="butt" href="SignUp.php">Signup</a></p>
+                  <p>Login as  <a class="butt" href="Admin.php">Admin</a></p>  
               <button type="submit" class="btn btn-primary">Login</button><br><hr>
           </form>
           </div>

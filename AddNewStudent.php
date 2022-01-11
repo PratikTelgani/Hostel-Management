@@ -66,11 +66,31 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             margin-right: 1040px;
             box-shadow: 8px 8px 8px black;
         }
+        .img-area{
+            background-image: url("Images/student");
+          -webkit-background-size: cover;
+          background-size: cover;
+          background-position: center center;
+          height: 100vh;
+          position: fixed;
+          left: 0;
+          right: 0;
+          z-index: -1;
+          filter: blur(8px);
+          -webkit-filter: blur(8px);
+          background-color: rgba(0,0,0,.3);
+        background-blend-mode: multiply;
+       }
         .add{
             margin-left: 125px;
             margin-right: 60%;
+            color: red;
+            font-weight: bold;
         }
-        .button{
+        .butt a:hover{
+            color: red;
+        }
+        .butt{
             align-items: center;
             margin-left: 45%;
         }
@@ -82,11 +102,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             margin-right: 32%;
             margin-left: 32%;
             text-align: center;
-      } 
+        }
+        .in{
+           border: 1px solid black;
+           outline: none;
+           border-radius: 5px;
+           box-shadow: 3px 3px 2px 1px black;
+        }
     </style>
     <title>Add New Student</title>
 </head>
 <body>
+    <div class="img-area"></div>
     <h1><div class="p-3 mb-2 bg-dark text-white header">Add New Student</div></h1><br>
     
     <?php
@@ -193,16 +220,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <form action="/HostelManagement/AddNewStudent.php" method = "post">
         <div class="form-group">
             <label for="formGroupExampleInput">USN:</label>
-            <input type="text" class="form-control" id="usn" name="usn" placeholder="Enter the USN of the student" Required><br>
+            <input type="text" class="form-control in" id="usn" name="usn" placeholder="Enter the USN of the student" Required><br>
         </div>
         <div class="form-group">
             <label for="formGroupExampleInput2">Room No:</label>
-            <input type="text" class="form-control" id="room" name="room" placeholder="Enter the Room No. to be allocated" Required><br>
+            <input type="text" class="form-control in" id="room" name="room" placeholder="Enter the Room No. to be allocated" Required><br>
         </div>
         <button type="submit" class="btn btn-primary">Add</button><br>
     </form>
 </div>
-<button type="submit" class="btn btn-dark button" ><a href="welcomeadmin.php" class="home">Home</a></button>
+<button type="submit" class="btn btn-dark butt" ><a href="welcomeadmin.php" class="home">Home</a></button>
 
 
 

@@ -21,8 +21,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&display=swap" rel="stylesheet">
 
     <style>
-      body{
-        background-image: url("Images/bg2.jpg");
+      .img-area{
+        background-image: url("Images/colors.jpg");
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-position: center center;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        filter: blur(8px);
+        -webkit-filter: blur(4px);
+        
       }
       .c{
         border: 2px solid black;
@@ -41,7 +52,7 @@
     <title>Document</title>
 </head>
 <body>
-
+<div class="img-area"></div>
   
     <div class="bg-dark bg-dark text-white header">Hostel Management</div><br>
 
@@ -100,11 +111,11 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-    <h3 class="bg-dark bg-dark text-white cap">Home like living, outside your Home!</h3>
+    <h3 class="bg-dark bg-warning text-white cap">Home like living, outside your Home!</h3>
   </div>
 
 <hr>
-<footer class="bg-dark text-center text-white">
+<footer class="bg-gradient text-center text-white">
   <div class="container p-4">
     <section class="mb-4">
       <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
@@ -156,7 +167,7 @@
           </div>
       
           <div class="col-auto">
-            <button type="submit" class="btn btn-outline-light mb-4">
+            <button type="submit" class="btn btn-outline-dark mb-4">
               Subscribe
             </button>
           </div>

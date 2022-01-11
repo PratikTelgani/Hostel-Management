@@ -67,6 +67,8 @@
         z-index: -1;
         filter: blur(8px);
         -webkit-filter: blur(4px);
+        background-color: rgba(0,0,0,.3);
+          background-blend-mode: multiply;
       }
       .login-card{
         box-shadow: 0px 0px 10px 5px black;
@@ -122,7 +124,7 @@
                 <label for="password" class="form-label"  >Password</label>
                 <input type="password" class="form-control in" id="password" name="password" Required>
               </div>
-              <p>Not an Admin ? <a href="HostelManagement.html">Home</a></p>
+              <p>Not an Admin ? <a class="butt" href="HostelManagement.html">Home</a></p>
               <button type="submit" class="btn btn-primary">Login</button><br><hr>
           </form>
           </div>

@@ -30,6 +30,27 @@
             margin-right: 35%;
             margin-left: 35%;
         }
+        .in{
+           border: 1px solid black;
+           outline: none;
+           border-radius: 5px;
+           box-shadow: 3px 3px 2px 1px black;
+        }
+        .img-area{
+          background-image: url("Images/comp.jpg");
+          -webkit-background-size: cover;
+          background-size: cover;
+          background-position: center center;
+          height: 100vh;
+          position: fixed;
+          left: 0;
+          right: 0;
+          z-index: -1;
+          filter: blur(8px);
+          -webkit-filter: blur(8px);
+          background-color: rgba(0,0,0,.3);
+        background-blend-mode: multiply;
+       }
         .table{
             margin-left: 10px;
             margin-right: 10px;
@@ -42,18 +63,26 @@
             margin-left: 125px;
             margin-right: 60%;
         }
-        .button{
+        .butt a:hover{
+            color: red;
+        }
+        .butt{
             align-items: center;
             margin-left: 45%;
-        }
+        } 
         .home{
             text-decoration: none;
             color: white;
+        }
+        .add{
+            color: red;
+            font-weight: bold;
         }
     </style>
     <title>Complaints</title>
 </head>
 <body>
+    <div class="img-area"></div>
     <h1><div class="p-3 mb-2 bg-dark text-white header">Complaints</div></h1><br>
 
 
@@ -89,16 +118,16 @@
     <form action="/HostelManagement/Complaints.php" method = "post">
         <div class="form-group">
             <label for="formGroupExampleInput">Room No</label>
-            <input type="text" class="form-control" id="room" name="room" placeholder="Enter the Room No"><br>
+            <input type="text" class="form-control in" id="room" name="room" placeholder="Enter the Room No"><br>
         </div>
         <div class="form-group">
             <label for="formGroupExampleInput2">Status</label>
-            <input type="text" class="form-control" id="status" name="status" placeholder="Enter Resolved if done"><br>
+            <input type="text" class="form-control in" id="status" name="status" placeholder="Enter Resolved if done"><br>
         </div>
         <button type="submit" class="btn btn-success">Submit</button><br>
     </form>
 </div>
-<button type="submit" class="btn btn-dark button" ><a href="welcomeadmin.php" class="home">Home</a></button>
+<button type="submit" class="btn btn-dark butt" ><a href="welcomeadmin.php" class="home">Home</a></button>
 
 
 

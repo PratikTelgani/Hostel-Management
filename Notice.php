@@ -39,15 +39,36 @@ $alert = false;
             margin-left: 35%;
         }
         .con{
-          margin-left: 5%;
-          font-size: 25px;
+          margin-left: 20%;
+          font-size: 30px;
         }
-        .btnh{
+        .img-area{
+          background-image: url("Images/notice.jpg");
+          -webkit-background-size: cover;
+          background-size: cover;
+          background-position: center center;
+          height: 100vh;
+          position: fixed;
+          left: 0;
+          right: 0;
+          z-index: -1;
+          filter: blur(8px);
+          -webkit-filter: blur(8px);
+          background-color: rgba(0,0,0,.3);
+        background-blend-mode: multiply;
+       }
+       .in{
+           border: 1px solid black;
+           outline: none;
+           border-radius: 5px;
+           box-shadow: 3px 3px 2px 1px black;
+        }
+        .butt a:hover{
             color: red;
+        }
+        .butt{
             align-items: center;
             margin-left: 45%;
-        }
-        .btnh a{
             text-decoration: none;
         }
         .err{
@@ -58,7 +79,7 @@ $alert = false;
     </style>
 </head>
 <body>
-
+<div class="img-area"></div>
 <div class="p-3 mb-6 bg-dark text-white header">Notice Board</div>
 
 <br><br>
@@ -67,25 +88,25 @@ $alert = false;
         echo '<h1><div class="alert alert-success d-flex align-items-center err">Notice Board Updated successfully</div></h1>';
     }
 ?><hr><br>
-<div class="con">
+<div class="con col-lg-6">
     <form action="/HostelManagement/Notice.php" method="post">
         <div class="form-group">
-            <label for="exampleFormControlInput1">Enter Hostel Notice:</label>
-            <input type="text" class="form-control" id="Hostel" name="Hostel" placeholder="Hostel Notice">
+            <label for="exampleFormControl Input1">Enter Hostel Notice:</label>
+            <input type="text" class="form-control in" id="Hostel" name="Hostel" placeholder="Hostel Notice">
         </div><hr>
         <div class="form-group">
-            <label for="exampleFormControlInput1">Enter Mess Details:</label>
-            <input type="text" class="form-control" id="Mess" name="Mess" placeholder="Mess Details">
+            <label for="exampleFormControl Input1">Enter Mess Details:</label>
+            <input type="text" class="form-control in" id="Mess" name="Mess" placeholder="Mess Details">
         </div><hr>
         <div class="form-group">
-            <label for="exampleFormControlInput1">Enter Events Details:</label>
-            <input type="text" class="form-control" id="Events" name="Events" placeholder="Events Details">
+            <label for="exampleFormControl Input1">Enter Events Details:</label>
+            <input type="text" class="form-control in" id="Events" name="Events" placeholder="Events Details">
         </div><hr>    
         <button type="submit" class="btn btn-success">Submit</button><br>
     </form>
 </div>
 
-    <hr><button type="submit" class="btn btn-dark btnh" ><a href="welcomeadmin.php" class="home">Home</a></button>
+    <hr><button type="submit" class="btn btn-dark butt" ><a href="welcomeadmin.php" class="home">Home</a></button>
 
 
 
