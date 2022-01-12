@@ -40,7 +40,7 @@ else{
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
     <link rel="stylesheet" href="css.css">
 
-    <title>welcome - Admin </title>
+    <title>Welcome Admin</title>
 
     <style>
         .h3{
@@ -76,6 +76,7 @@ else{
 </head>
 <body>
 <div class="img-area"></div>
+
 <div class="bg-dark bg-gradient text-white header">Hostel Management</div><br>
 
     <div class="nav nav-pills nav">
@@ -105,6 +106,7 @@ else{
         </li>
       </ul>
    </div><hr><hr>
+
    <div class="p-3 mb-6 bg-dark text-white h3">Hostel Inmates Details:</div>
 <br>
 
@@ -125,7 +127,7 @@ else{
             </tr>
         </thead>
             <?php
-                $details = "SELECT * FROM student_details WHERE R_No is not NULL ORDER BY student_details.R_No";
+                $details = "SELECT * FROM student_details WHERE R_No!=0 ORDER BY student_details.R_No";
                 $details1 = mysqli_query($con,$details);
                 while($Room = mysqli_fetch_assoc($details1))
                 {

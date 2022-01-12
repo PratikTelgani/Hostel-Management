@@ -13,6 +13,7 @@
         $Year = $_POST['year'];
         $Fee = $_POST["fee"];
         $Addr = $_POST["addr"];
+        $Gender = $_POST['gender'];
 
         $existSql = "Select * from `logindetails` where Email = '$username'";
         $result = mysqli_query($con,$existSql);
@@ -25,7 +26,7 @@
           if(($password == $cpassword)){
             $hash=password_hash($password,PASSWORD_DEFAULT);
             $sql = "INSERT INTO `logindetails` (`Email`, `Password`,`Name`,`USN`) VALUES ('$username','$hash','$Name','$USN');";
-            $query = "INSERT INTO `student_details` (`St_Name`, `St_USN`,`St_Branch`,`St_Year`,`St_PhNo`,`St_Addr`,`Fee`) VALUES ('$Name','$USN','$Branch','$Year','$Phno','$Addr','$Fee');";
+            $query = "INSERT INTO `student_details` (`St_Name`, `St_USN`,`St_Branch`,`Gender`,`St_Year`,`St_PhNo`,`St_Addr`,`Fee`) VALUES ('$Name','$USN','$Branch','$Gender','$Year','$Phno','$Addr','$Fee');";
             $result = mysqli_query($con,$sql);
             $result1 = mysqli_query($con,$query);
             if($result && $result1){
@@ -113,7 +114,7 @@
           text-align: center;
        }
        
-       .butt:hover{
+       .login:hover{
          color: red;
        }
 </style>
@@ -148,6 +149,7 @@
    </div></svg>';
    }
 ?>
+
 <hr>
     
 <form action="/HostelManagement/SignUp.php" method="post">
@@ -166,7 +168,7 @@
           </div>
           <div class="mb-3" >
             <label for="username" class="form-label" >Email address*</label>
-            <input type="email" class="form-control in" id="username" name="username" aria-describedby="emailHelp" Required>
+            <input type="email" class="form-control in" id="username" name="username" aria-describedby="emailHelp" Required placeholder="abc@xyz">
             <div id="emailHelp"  class="form-text" style="color: white">We'll never share your email with anyone else.</div>
           </div>
           <div class="mb-3">
@@ -182,8 +184,12 @@
             <input type="text" class="form-control in" id="branch" name="branch" Required>
           </div>
           <div class="mb-3" >
+            <label for="name" class="form-label" >Gender*</label>
+            <input type="text" class="form-control in" id="gender" name="gender" Required placeholder="Male or Female">
+          </div>
+          <div class="mb-3" >
             <label for="name" class="form-label" >Year*</label>
-            <input type="text" class="form-control in" id="year" name="year" Required>
+            <input type="text" class="form-control in" id="year" name="year" Required placeholder="Presently studying">
           </div>
           <div class="mb-3" >
             <label for="name" class="form-label" >PhNo*</label>
@@ -197,13 +203,14 @@
             <label for="name" class="form-label" >Address*</label>
             <input type="text" class="form-control in" id="addr" name="addr" Required>
           </div>
-          <p>Already have an account ? <a class="butt" href="Student_login.php" class="login">Login</a></p>
+          <p>Already have an account ? <a href="Student_login.php" class="login">Login</a></p>
           <button type="submit" class="btn btn-primary">Sign Up</button><br><hr>
       </form>
       </div>
     </div>
   </div>
 </form>
+
 <br>
 
 

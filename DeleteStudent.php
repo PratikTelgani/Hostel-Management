@@ -1,5 +1,12 @@
 <?php
     session_start();
+    $noUSN=false;
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
+    header("location: Admin.php");
+    exit;
+}
+else{
+
     include 'dbconnect.php';
     if($_SERVER["REQUEST_METHOD"] == "POST"){
     $USN = $_POST["usn"];
@@ -7,8 +14,15 @@
     $delete2 = "DELETE FROM `student_details` WHERE `student_details`.`St_USN` = '$USN';";
     $result2 = mysqli_query($con,$delete1);
     $result3 = mysqli_query($con,$delete2);
+
+    $checkUSN="SELECT * FROM student_details WHERE St_USN='$USN'";
+    $checkUSN1=mysqli_query($con, $checkUSN);
+    $num=mysqli_num_rows($checkUSN1);
+        if($num==0){
+            $noUSN=true;
+        }
     }
-    
+} 
 ?>
 
 <!DOCTYPE html>
@@ -60,8 +74,13 @@
         background-blend-mode: multiply;
        }
         .butt a:hover{
-            color: red;
+            color: white;
         }
+        .err{
+        margin-right: 35%;
+        margin-left: 35%;
+        text-align: center;
+      }
         .butt{
             align-items: center;
             margin-left: 45%;
@@ -77,12 +96,27 @@
            box-shadow: 3px 3px 2px 1px black;
         }
     </style>
+
     <title>Delete Student</title>
 </head>
 <body>
 <div class="img-area"></div>
 
-<h1><div class="p-3 mb-2 bg-dark text-white header">Delete Student</div></h1><br>   
+<h1><div class="p-3 mb-2 bg-dark text-white header">Delete Student</div></h1><br>
+<?php
+      if($noUSN){
+          echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+          <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+        </symbol>
+        <div class="alert alert-danger d-flex align-items-center err" role="alert">
+          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+          <div >
+           Error!! Student does not exist or been removed already.
+          </div>
+        </div></svg>';
+        }
+    ?><br>   
 <div class="p-3 mb-6 bg-dark text-white h3">Details of Hostel Inmates:</div>
 
 
@@ -98,7 +132,7 @@
             </tr>
         </thead>
             <?php
-                $getStudent = "SELECT * FROM `student_details` WHERE St_USN!='' ORDER BY R_No;";
+                $getStudent = "SELECT * FROM `student_details` WHERE R_No!=0 ORDER BY R_No;";
                 $result = mysqli_query($con,$getStudent);
                 while($Room = mysqli_fetch_assoc($result))
                 {
@@ -115,6 +149,8 @@
 </div><br>
 
 <div class="p-3 mb-6 bg-success text-white h3">Delete Student</div>
+<br>
+
 
 <div class="add">
     <form action="/HostelManagement/DeleteStudent.php" method = "post">
@@ -125,7 +161,8 @@
     <button type="submit" class="btn btn-primary">Delete</button><br>
     </form>
 </div>
-<button type="submit" class="btn btn-dark butt" ><a href="welcomeadmin.php" class="home">Home</a></button>
+
+<button type="submit" class="btn btn-outline-success mb-4 butt" ><a href="welcomeadmin.php" class="home">Home</a></button>
 
 
 

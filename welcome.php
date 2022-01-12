@@ -1,6 +1,7 @@
 <?php
-
+$Error=false;
 session_start();
+$Entry=false;
 
 include 'dbconnect.php';
 if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
@@ -17,8 +18,16 @@ else{
   $notice = "Select * from hostelnotice";
   $notice1 = mysqli_query($con,$notice);
   $notice2 = mysqli_fetch_assoc($notice1);
-  
 }
+
+$query = "select * from student_details where St_USN = '$USN' ";
+$result1 = mysqli_query($con,$query);
+$rows1 = mysqli_fetch_assoc($result1);
+
+if($rows1['R_No']==0){
+  $Error=true;
+}
+
 ?>
 
 
@@ -39,7 +48,7 @@ else{
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Padauk:wght@700&display=swap" rel="stylesheet">
-    <title>welcome - <?php $_SESSION['username'] ?> </title>
+    <title>Welcome Student </title>
 
     <style>
         .table{
@@ -79,9 +88,27 @@ else{
           box-shadow: 5px 5px 5px black;
         }
     </style>
+
 </head>
 <body>
+
 <div class="img-area"></div>
+
+<?php
+      if($Error){
+          echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+          <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+        </symbol>
+        <div class="alert alert-danger d-flex align-items-center err" role="alert">
+          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+          <div >
+           Warning!! You are not entered in Hostel yet, so you are not allowed to use any of the Hostel features!
+          </div>
+        </div></svg>';
+        }
+    ?>
+
   <div class="bg-dark bg-dark text-white header">Hostel Management</div><br>
 
 
@@ -116,6 +143,7 @@ else{
             <th scope="col">Name</th>
             <th scope="col">USN</th>
             <th scope="col">Branch</th>
+            <th scope="col">Gender</th>
             <th scope="col">Year</th>
             <th scope="col">Mob</th>
             <th scope="col">Address</th>
@@ -132,6 +160,7 @@ else{
                     <td>'.$rows1['St_Name'].'</td>
                     <td>'.$rows1['St_USN'].'</td>
                     <td>'.$rows1['St_Branch'].'</td>
+                    <td>'.$rows1['Gender'].'</td>
                     <td>'.$rows1['St_Year'].'</td>
                     <td>'.$rows1['St_PhNo'].'</td>
                     <td>'.$rows1['St_Addr'].'</td>
@@ -146,6 +175,7 @@ else{
 <br>
 
 <h1><div class="p-3 mb-2 bg-primary text-white notice">Notice Board</div></h1>
+
 
 
 <div class="not">
@@ -188,6 +218,7 @@ else{
     </div>
   </div>
 </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
 
 

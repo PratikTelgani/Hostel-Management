@@ -1,28 +1,37 @@
 <?php
-
 session_start();
 include 'dbconnect.php';
-    $alert = false;
-  $username = $_SESSION['username'];
-  $sql = "Select * from logindetails where Email='$username'";
-  $result = mysqli_query($con, $sql);
-  $rows = mysqli_fetch_assoc($result);
-  $USN = $rows['USN'];
-  $query = "Select * from student_details where St_USN = '$USN'";
-  $result1 = mysqli_query($con,$query);
-  $rows1 = mysqli_fetch_assoc($result1);
-  $Room = $rows1['R_No'];
-
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-
-  $comp = $_POST["time"];
-  $insert = "INSERT INTO `room_service` (`Room_No`, `Time`) VALUES ('$Room','$comp')";
-  $insert1 = mysqli_query($con, $insert);
-  if($insert1){
-      $alert = true;
-  }
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
+    header("location: Student_login.php");
+    exit;
 }
+else{
+        include 'dbconnect.php';
+        $alert = false;
+        $username = $_SESSION['username'];
+        $sql = "Select * from logindetails where Email='$username'";
+        $result = mysqli_query($con, $sql);
+        $rows = mysqli_fetch_assoc($result);
+        $USN = $rows['USN'];
+        $query = "Select * from student_details where St_USN = '$USN'";
+        $result1 = mysqli_query($con,$query);
+        $rows1 = mysqli_fetch_assoc($result1);
+        $Room = $rows1['R_No'];
 
+        if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+        $comp = $_POST["time"];
+        $insert = "INSERT INTO `room_service` (`Room_No`, `Time`) VALUES ('$Room','$comp')";
+        $insert1 = mysqli_query($con, $insert);
+        if($insert1){
+            $alert = true;
+        }
+        }
+    }
+if($Room==0){
+    header("location: welcome.php");
+    exit;
+  }
 ?>
 
 
@@ -50,7 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             margin-right: 10px;
         }
         .err{
-          margin-right: 32%;
+          margin-right: 38%;
           margin-left: 32%;
           text-align: center;
         }
@@ -73,7 +82,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             box-shadow: 8px 8px 8px black;
         }
         .butt a:hover{
-            color: red;
+            color: white;
         }
         .butt{
             align-items: center;
@@ -98,10 +107,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             color: white;
         }
     </style>
+
     <title>Room Service</title>
 </head>
 <body>
+
     <div class="img-area"></div>
+    
     <h1><div class="p-3 mb-2 bg-dark text-white header">Room Service</div></h1>
     <br>
 
@@ -116,16 +128,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <button type="submit" class="btn btn-primary">Submit</button><br>
     </form>
 </div>
-<button type="submit" class="btn btn-dark butt" ><a href="welcome.php" class="home">Home</a></button>
+
+<button type="submit" class="btn btn-outline-success mb-4 butt" ><a href="welcome.php" class="home">Home</a></button><br>
 <br>
+
 <?php 
     if($alert){
         echo '<h1><div class="alert alert-success d-flex align-items-center err">Room Service Booked</div></h1>';
     }
 ?>
-
-
-
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>

@@ -2,26 +2,37 @@
 
 session_start();
 include 'dbconnect.php';
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
+    header("location: Student_login.php");
+    exit;
+}
+else{
+    include 'dbconnect.php';
     $alert = false;
-  $username = $_SESSION['username'];
-  $sql = "Select * from logindetails where Email='$username'";
-  $result = mysqli_query($con, $sql);
-  $rows = mysqli_fetch_assoc($result);
-  $USN = $rows['USN'];
-  $query = "Select * from student_details where St_USN = '$USN'";
-  $result1 = mysqli_query($con,$query);
-  $rows1 = mysqli_fetch_assoc($result1);
-  $Room = $rows1['R_No'];
+    $username = $_SESSION['username'];
+    $sql = "Select * from logindetails where Email='$username'";
+    $result = mysqli_query($con, $sql);
+    $rows = mysqli_fetch_assoc($result);
+    $USN = $rows['USN'];
+    $query = "Select * from student_details where St_USN = '$USN'";
+    $result1 = mysqli_query($con,$query);
+    $rows1 = mysqli_fetch_assoc($result1);
+    $Room = $rows1['R_No'];
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-  $comp = $_POST["complaint"];
-  $insert = "INSERT INTO `complaints` (`Room_No`, `Complaint`) VALUES ('$Room','$comp')";
-  $insert1 = mysqli_query($con, $insert);
-  if($insert1){
-    $alert = true;
+    $comp = $_POST["complaint"];
+    $insert = "INSERT INTO `complaints` (`Room_No`, `Complaint`) VALUES ('$Room','$comp')";
+    $insert1 = mysqli_query($con, $insert);
+    if($insert1){
+        $alert = true;
+        }
     }
 }
+if($Room==0){
+    header("location: welcome.php");
+    exit;
+  }
 ?>
 
 
@@ -79,7 +90,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             margin-right: 60%;
         }
         .butt a:hover{
-            color: red;
+            color: white;
         }
         .butt{
             align-items: center;
@@ -103,14 +114,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
            box-shadow: 3px 3px 2px 1px black;
         }
     </style>
+
     <title>Complaints</title>
 </head>
 <body>
+
     <div class="img-area"></div>
+
     <h1 div class="p-3 mb-2 bg-dark text-white header">Complaints</div></h1>
+
     <div class="p-3 mb-6 bg-dark text-white h3">Complaints History:</div>
     <br>
-
+    
 
 
 <div class="container">
@@ -138,6 +153,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </table>
     </div>
 </div><br>
+
 <?php 
     if($alert){
         echo '<h1><div class="alert alert-success d-flex align-items-center err">Complaint Booked</div></h1>';
@@ -158,7 +174,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
-<button type="submit" class="btn btn-dark butt" ><a href="welcome.php" class="home">Home</a></button>
+<button type="submit" class="btn btn-outline-success mb-4 butt" ><a href="welcome.php" class="home">Home</a></button>
 
 
 

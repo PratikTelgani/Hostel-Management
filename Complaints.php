@@ -1,14 +1,27 @@
 <?php
+$Error=false;
     session_start();
     include 'dbconnect.php';
-
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
+    header("location: Admin.php");
+    exit;
+}
+else{
     if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $Room = $_POST['room'];
-    $status = $_POST['status'];
-    $query = "UPDATE `complaints` SET `Status` = '$status' WHERE `Room_No` = '$Room'";
-    $result = mysqli_query($con, $query);
+        $Room = $_POST['room'];
+        $status = $_POST['status'];
+        $query = "UPDATE `complaints` SET `Status` = '$status' WHERE `Room_No` = '$Room'";
+        $result = mysqli_query($con, $query);
+
+        $query1 = "SELECT * FROM complaints where Status != 'Resolved'";
+        $result2 = mysqli_query($con, $query1);
+        while($rows2 = mysqli_fetch_assoc($result2)){
+            if($Room!=$rows2['Room_No']){
+                $Error=true;
+            }
+        }
     }
-    
+}
 ?>
 
 <!DOCTYPE html>
@@ -64,12 +77,17 @@
             margin-right: 60%;
         }
         .butt a:hover{
-            color: red;
+            color: white;
         }
         .butt{
             align-items: center;
             margin-left: 45%;
         } 
+        .err{
+        margin-right: 35%;
+        margin-left: 35%;
+        text-align: center;
+      }
         .home{
             text-decoration: none;
             color: white;
@@ -79,15 +97,31 @@
             font-weight: bold;
         }
     </style>
+    
     <title>Complaints</title>
 </head>
 <body>
     <div class="img-area"></div>
     <h1><div class="p-3 mb-2 bg-dark text-white header">Complaints</div></h1><br>
 
+    <?php
+        if($Error){
+            echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+          </symbol>
+          <div class="alert alert-danger d-flex align-items-center err" role="alert">
+            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+            <div >
+             Error!! Resolve a listed complaint.
+            </div>
+          </div></svg>';
+          }
+    ?>
+    <br>
 
 <div class="container">
-<div class="table">
+    <div class="table">
         <table class="table table-striped table-dark">
         <thead>
             <tr>
@@ -127,7 +161,8 @@
         <button type="submit" class="btn btn-success">Submit</button><br>
     </form>
 </div>
-<button type="submit" class="btn btn-dark butt" ><a href="welcomeadmin.php" class="home">Home</a></button>
+
+<button type="submit" class="btn btn-outline-success mb-4 butt" ><a href="welcomeadmin.php" class="home">Home</a></button>
 
 
 

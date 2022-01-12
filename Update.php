@@ -4,47 +4,51 @@
     $showError=false;
     $wrongUSN=false;
     $updated=false;
-
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
+    header("location: Admin.php");
+    exit;
+}
+else{
     include 'dbconnect.php';
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $USN = $_POST["usn"];
-    $Room = $_POST["room"];
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        $USN = $_POST["usn"];
+        $Room = $_POST["room"];
 
-    $usnCheck = "SELECT * FROM student_details WHERE St_USN='$USN'";
-    $usnCheck1 = mysqli_query($con, $usnCheck);
-    $num = mysqli_fetch_row($usnCheck1);
+        $usnCheck = "SELECT * FROM student_details WHERE St_USN='$USN'";
+        $usnCheck1 = mysqli_query($con, $usnCheck);
+        $num = mysqli_fetch_row($usnCheck1);
 
-    if($num!=NULL){
-        if($Room>100 && $Room<111){
-            $check = "SELECT Vacancy from hostel_details WHERE R_No = '$Room'";
-            $check1 = mysqli_query($con, $check);
-            $check2=mysqli_fetch_assoc($check1);
-            if($check2['Vacancy']>0){
-                $usnCheck = "SELECT * FROM student_details WHERE St_USN='$USN'";
-                $usnCheck1 = mysqli_query($con, $usnCheck);
-                $usnCheck3 = mysqli_fetch_assoc($usnCheck1);
-                $prevRoom = $usnCheck3['R_No'];
-                $update1 = "UPDATE `student_details` SET `R_No` = '$Room' WHERE `St_USN` = '$USN'";
-                $result2 = mysqli_query($con, $update1);
-                $preUSN = "UPDATE hostel_details SET Vacancy = Vacancy+1 where R_No = '$prevRoom'";
-                $inc = mysqli_query($con, $preUSN);     
-                $dec = "UPDATE hostel_details SET Vacancy = Vacancy-1 WHERE R_No = '$Room'";
-                $dec1 = mysqli_query($con, $dec);
-                if($inc && $dec){$updated=true;}
+        if($num!=NULL){
+            if($Room>100 && $Room<111){
+                $check = "SELECT Vacancy from hostel_details WHERE R_No = '$Room'";
+                $check1 = mysqli_query($con, $check);
+                $check2=mysqli_fetch_assoc($check1);
+                if($check2['Vacancy']>0){
+                    $usnCheck = "SELECT * FROM student_details WHERE St_USN='$USN'";
+                    $usnCheck1 = mysqli_query($con, $usnCheck);
+                    $usnCheck3 = mysqli_fetch_assoc($usnCheck1);
+                    $prevRoom = $usnCheck3['R_No'];
+                    $update1 = "UPDATE `student_details` SET `R_No` = '$Room' WHERE `St_USN` = '$USN'";
+                    $result2 = mysqli_query($con, $update1);
+                    $preUSN = "UPDATE hostel_details SET Vacancy = Vacancy+1 where R_No = '$prevRoom'";
+                    $inc = mysqli_query($con, $preUSN);     
+                    $dec = "UPDATE hostel_details SET Vacancy = Vacancy-1 WHERE R_No = '$Room'";
+                    $dec1 = mysqli_query($con, $dec);
+                    if($inc && $dec){$updated=true;}
+                }
+                else{
+                    $showAlert = true;
+                }
             }
             else{
-                $showAlert = true;
+                $showError=true;
             }
         }
         else{
-            $showError=true;
+            $wrongUSN=true;
         }
     }
-    else{
-        $wrongUSN=true;
-    }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -96,7 +100,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         background-blend-mode: multiply;
        }
         .butt a:hover{
-            color: red;
+            color: white;
         }
         .butt{
             align-items: center;
@@ -118,6 +122,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
            box-shadow: 3px 3px 2px 1px black;
         }
     </style>
+
     <title>Update Room</title>
 </head>
 <body>
@@ -125,12 +130,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <h1><div class="p-3 mb-2 bg-dark text-white header">Update Room</div></h1>   <br> 
 <?php
-if($wrongUSN){
+        if($wrongUSN){
             echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
             <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
           </symbol>
-          <div class="alert alert-success d-flex align-items-center err" role="alert">
+          <div class="alert alert-danger d-flex align-items-center err" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
             <div >
              Error!! Entered student does not exist or been removed.
@@ -142,7 +147,7 @@ if($wrongUSN){
             <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
           </symbol>
-          <div class="alert alert-success d-flex align-items-center err" role="alert">
+          <div class="alert alert-danger d-flex align-items-center err" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
             <div >
              Error!! Room is already filled.
@@ -154,7 +159,7 @@ if($wrongUSN){
             <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
           </symbol>
-          <div class="alert alert-success d-flex align-items-center err" role="alert">
+          <div class="alert alert-danger d-flex align-items-center err" role="alert">
             <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
             <div >
              Error!! Invalid Room No.
@@ -173,7 +178,7 @@ if($wrongUSN){
             </div>
           </div></svg>';
           }
-    ?>
+?>
 
 <div class="p-3 mb-6 bg-dark text-white h3">Details of Hostel Inmates:</div>
 
@@ -191,7 +196,7 @@ if($wrongUSN){
                 </tr>
             </thead>
                 <?php
-                    $getStudent = "SELECT * FROM `student_details` WHERE St_USN!='' ORDER BY R_No;";
+                    $getStudent = "SELECT * FROM `student_details` WHERE R_No!=0 ORDER BY R_No;";
                     $result = mysqli_query($con,$getStudent);
                     while($Room = mysqli_fetch_assoc($result))
                     {
@@ -246,7 +251,8 @@ if($wrongUSN){
         <button type="submit" class="btn btn-primary">Update</button><br>
     </form>
 </div>
-<button type="submit" class="btn btn-dark butt" ><a href="welcomeadmin.php" class="home">Home</a></button>
+
+<button type="submit" class="btn btn-outline-success mb-4 butt" ><a href="welcomeadmin.php" class="home">Home</a></button>
 
 
 

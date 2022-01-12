@@ -1,6 +1,11 @@
 <?php
 $alert = false;
     session_start();
+if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
+    header("location: Admin.php");
+    exit;
+}
+else{
     include 'dbconnect.php';
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $Hostel = $_POST["Hostel"];
@@ -16,6 +21,7 @@ $alert = false;
             $alert = true;
         }
     }
+}
 ?>
 
 <!DOCTYPE html>
@@ -63,10 +69,11 @@ $alert = false;
            border-radius: 5px;
            box-shadow: 3px 3px 2px 1px black;
         }
-        .butt a:hover{
-            color: red;
+        .home a:hover{
+            color: white;
         }
-        .butt{
+        .home{
+            color: white;
             align-items: center;
             margin-left: 45%;
             text-decoration: none;
@@ -77,17 +84,21 @@ $alert = false;
             text-align: center;
       }
     </style>
+    
 </head>
 <body>
 <div class="img-area"></div>
 <div class="p-3 mb-6 bg-dark text-white header">Notice Board</div>
 
 <br><br>
-<hr><?php 
+<hr>
+
+<?php 
     if($alert){
         echo '<h1><div class="alert alert-success d-flex align-items-center err">Notice Board Updated successfully</div></h1>';
     }
 ?><hr><br>
+
 <div class="con col-lg-6">
     <form action="/HostelManagement/Notice.php" method="post">
         <div class="form-group">
@@ -106,7 +117,7 @@ $alert = false;
     </form>
 </div>
 
-    <hr><button type="submit" class="btn btn-dark butt" ><a href="welcomeadmin.php" class="home">Home</a></button>
+    <hr><button type="submit" class="btn btn-outline-success mb-4 home" ><a href="welcomeadmin.php">Home</a></button>
 
 
 

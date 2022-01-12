@@ -36,13 +36,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css.css">
+    <link rel="stylesheet" href="css.css">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
     <title>Admin Login</title>
   </head>
   <body>
+    
     <style>
 
       .header{
@@ -91,23 +92,29 @@
           border-radius: 5px;
           box-shadow: 3px 3px 2px 1px black;
       }
+      .butt:hover{
+          color:red;
+      }
     </style>
+
     <div class="img-area"></div>
+
 <div class="header">Admin Login</div><br>
+
 <?php
       if($showError || $alert){
           echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
           <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
           <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
         </symbol>
-        <div class="alert alert-success d-flex align-items-center err" role="alert">
+        <div class="alert alert-danger d-flex align-items-center err" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
           <div >
            Error!! Invalid Username/Password or Unauthorised Access!!
           </div>
         </div></svg>';
         }
-    ?>
+?>
     
     <form action="/HostelManagement/Admin.php" method="post">
       <div class="container" style="margin-top: 100px;">
@@ -124,7 +131,7 @@
                 <label for="password" class="form-label"  >Password</label>
                 <input type="password" class="form-control in" id="password" name="password" Required>
               </div>
-              <p>Not an Admin ? <a class="butt" href="HostelManagement.html">Home</a></p>
+              <p>Not an Admin ? <a href="HostelManagement.html" class="butt" >Home</a></p>
               <button type="submit" class="btn btn-primary">Login</button><br><hr>
           </form>
           </div>

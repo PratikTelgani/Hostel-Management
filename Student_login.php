@@ -7,7 +7,7 @@
     $password = $_POST["password"];
     
     
-    $sql = "Select * from logindetails where Email='$username'";
+    $sql = "SELECT * from logindetails where Email='$username'";
     $result = mysqli_query($con,$sql);
     $num = mysqli_num_rows($result);
       if($num == 1){
@@ -92,8 +92,8 @@
         border-radius: 8px;
       }
       .err{
-        margin-right: 40%;
-        margin-left: 40%;
+        margin-right: 37%;
+        margin-left: 37%;
         text-align: center;
       }
       .in{
@@ -109,15 +109,18 @@
         color: red;
       }
     </style>
+
 <div class="img-area"></div>
+
 <h1 class = "head" >Student Login</h1><br>
+
     <?php
       if($showError || $alert){
           echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
           <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
           <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
         </symbol>
-        <div class="alert alert-success d-flex align-items-center err" role="alert">
+        <div class="alert alert-danger d-flex align-items-center err" role="alert">
           <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
           <div >
            Error!! Invalid Username/Password
@@ -141,8 +144,8 @@
                 <label for="password" class="form-label" >Password</label>
                 <input type="password" class="form-control in" id="password" name="password" Required>
               </div>
-                  <p>Don't have an account ? <a class="butt" href="SignUp.php">Signup</a></p>
-                  <p>Login as  <a class="butt" href="Admin.php">Admin</a></p>  
+                  <p>Don't have an account ? <a  href="SignUp.php" class="butt">Signup</a></p>
+                  <p>Login as  <a href="Admin.php" class="butt">Admin</a></p>  
               <button type="submit" class="btn btn-primary">Login</button><br><hr>
           </form>
           </div>
@@ -151,16 +154,6 @@
     </form>
 
     <br>
-    
-
-
-
-
-
-
-
-
-
     
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
