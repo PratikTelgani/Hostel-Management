@@ -15,6 +15,7 @@ else{
   $result = mysqli_query($con,$sql);
   $rows = mysqli_fetch_assoc($result);
   $USN = $rows['USN'];
+  
   $notice = "Select * from hostelnotice";
   $notice1 = mysqli_query($con,$notice);
   $notice2 = mysqli_fetch_assoc($notice1);
@@ -23,6 +24,7 @@ else{
 $query = "select * from student_details where St_USN = '$USN' ";
 $result1 = mysqli_query($con,$query);
 $rows1 = mysqli_fetch_assoc($result1);
+$Room = $rows1['R_No'];
 
 if($rows1['R_No']==0){
   $Error=true;
@@ -114,8 +116,11 @@ if($rows1['R_No']==0){
 
 <div class="nav nav-pills nav-bar">
       <ul class="bg-dark bg-dark text-white nav nav-tabs">
+      <li class="nav-item">
+          <a class="nav-link navs" aria-current="page" href="welcome.php">Home</a>
+        </li>
         <li class="nav-item">
-          <a class="nav-link navs" aria-current="page" href="welcome.php">My Account</a>
+          <a class="nav-link navs" aria-current="page" href="myprofile.php">My Account</a>
         </li>
         <li class="nav-item">
           <a class="nav-link navs" aria-current="page" href="AddComplaints.php">Complaints</a>
@@ -151,7 +156,7 @@ if($rows1['R_No']==0){
             </tr>
         </thead>
             <?php
-                $query = "select * from student_details where St_USN = '$USN' ";
+                $query = "select * from student_details where R_No= '$Room' ";
                 $result1 = mysqli_query($con,$query);
                 while($rows1 = mysqli_fetch_assoc($result1))
                 {
@@ -175,6 +180,14 @@ if($rows1['R_No']==0){
 <br>
 
 <h1><div class="p-3 mb-2 bg-primary text-white notice">Notice Board</div></h1>
+
+
+
+
+
+
+
+
 
 
 

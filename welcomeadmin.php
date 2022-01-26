@@ -48,7 +48,7 @@ else{
             margin-right: 1040px;
         }
         .img-area{
-          background-image: url("Images/admin.jpg");
+          background-image: url("Images/bg1.jpg");
           -webkit-background-size: cover;
           background-size: cover;
           background-position: center center;
@@ -112,7 +112,7 @@ else{
 
   <div class="container">
     <div class="table">
-        <table class="table table-striped table-dark">
+        <table class="table table-striped table-primary">
         <thead>
             <tr>
             <th scope="col">Room No</th>
@@ -141,6 +141,8 @@ else{
                     <td>'.$Room['St_Addr'].'</td>
                     <td>'.$Room['Fee'].'</td>
                     </tr>';
+
+                    
             }
             ?>
         </table>

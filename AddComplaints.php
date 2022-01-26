@@ -166,7 +166,7 @@ if($Room==0){
     <form action="/HostelManagement/AddComplaints.php" method = "post">
         <div class="form-group names">
             <label for="formGroupExampleInput2">Complaint</label>
-            <input type="text" class="form-control in" id="complaint" name="complaint" placeholder="Describe your Complaint" Required><br>
+            <input type="text" class="form-control in" id="complaint" name="complaint" placeholder="(To request change of room enter your USN and Room No)" Required><br>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button><br>
     </form>

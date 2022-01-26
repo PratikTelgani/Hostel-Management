@@ -164,7 +164,7 @@
           </div>
           <div class="mb-3" >
             <label for="USN" class="form-label" >USN*</label>
-            <input type="text" class="form-control in" id="USN" name="USN"  Required>
+            <input type="text"  pattern="(4NI)[0-9][0-9][A-Z][A-Z][0-9]{3}" class="form-control in" id="USN" name="USN" value="4NI" Required>
           </div>
           <div class="mb-3" >
             <label for="username" class="form-label" >Email address*</label>
@@ -180,20 +180,40 @@
             <input type="password" class="form-control in" id="cpassword" name="cpassword" Required>
           </div>
           <div class="mb-3" >
-            <label for="name" class="form-label" >Branch*</label>
-            <input type="text" class="form-control in" id="branch" name="branch" Required>
+            <label for="branch" class="form-label" >Branch*</label>
+            <select name=branch class="form-select" aria-label="Default select example">
+              <option selected>[Select]</option>
+              <option value="CSE">CSE</option>
+              <option value="ISE">ISE</option>
+              <option value="CV">CV</option>
+              <option value="IP">IP</option>
+              <option value="EEE">EEE</option>
+              <option value="ECE">ECE</option>
+              <option value="ME">ME</option>
+            </select>
           </div>
           <div class="mb-3" >
-            <label for="name" class="form-label" >Gender*</label>
-            <input type="text" class="form-control in" id="gender" name="gender" Required placeholder="Male or Female">
+            <label for="gender" class="form-label" >Gender*</label>
+            <select name=gender class="form-select" aria-label="Default select example">
+              <option selected>[Select]</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
           <div class="mb-3" >
-            <label for="name" class="form-label" >Year*</label>
-            <input type="text" class="form-control in" id="year" name="year" Required placeholder="Presently studying">
+            <label for="year" class="form-label" >Year*</label>
+            <select name=year class="form-select" aria-label="Default select example">
+              <option selected>[Select]</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
           </div>
           <div class="mb-3" >
             <label for="name" class="form-label" >PhNo*</label>
-            <input type="text" class="form-control in" id="phno" name="phno" Required>
+            <input type="tel" pattern="[0-9]{10}" class="form-control in" id="phno" name="phno" Required>
           </div>
           <div class="mb-3" >
             <label for="name" class="form-label" >Fee*</label>
